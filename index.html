@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Venice, Florida — Family Travel Planner</title>
+  <meta name="description" content="A coastal family travel planner for Venice, Florida, August 29–September 1, 2026." />
+  <style>
+    :root{
+      --ink:#174b72;
+      --ink-deep:#123a59;
+      --sand:#f4ecd9;
+      --cream:#fbf8ef;
+      --paper:#fffdf8;
+      --gold:#cdb589;
+      --gold-deep:#a98d5f;
+      --sage:#aeb5a0;
+      --sky:#dbeaf1;
+      --line:#dfd1b9;
+      --shadow:0 18px 50px rgba(50,42,25,.13);
+      --radius:26px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:#45433f;
+      background:
+        radial-gradient(circle at top left, rgba(215,227,218,.6), transparent 28rem),
+        linear-gradient(180deg,#f3eee3,#e9e0d0 70%,#f5f0e7);
+      font-family: Georgia, 'Times New Roman', serif;
+      line-height:1.5;
+    }
+    a{color:var(--ink);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .appbar{
+      position:sticky; top:0; z-index:30;
+      display:flex; align-items:center; gap:18px;
+      padding:12px 18px;
+      background:rgba(251,248,239,.94); backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(169,141,95,.25);
+      box-shadow:0 5px 18px rgba(55,45,30,.06);
+    }
+    .brand{font-family:Arial,sans-serif;font-weight:700;letter-spacing:.05em;color:var(--ink-deep);white-space:nowrap}
+    nav{display:flex;gap:8px;overflow:auto;padding-bottom:2px}
+    nav a{font-family:Arial,sans-serif;font-size:.82rem;padding:7px 10px;border-radius:999px;background:white;border:1px solid var(--line);white-space:nowrap}
+    .page{
+      width:min(920px,calc(100% - 28px));
+      min-height:1120px;
+      margin:28px auto;
+      padding:52px 54px 48px;
+      background:
+        linear-gradient(rgba(255,253,248,.93),rgba(255,253,248,.93)),
+        repeating-linear-gradient(0deg,rgba(120,100,70,.025) 0 1px,transparent 1px 4px);
+      border:1px solid #d6c29d;
+      outline:6px double rgba(205,181,137,.42);
+      outline-offset:-16px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .page::before{
+      content:"";position:absolute;left:-18px;top:-12px;width:160px;height:160px;opacity:.35;
+      background:
+        radial-gradient(ellipse at 20% 0%,transparent 55%,rgba(120,130,103,.6) 57% 60%,transparent 62%),
+        radial-gradient(ellipse at 45% 5%,transparent 57%,rgba(120,130,103,.45) 59% 61%,transparent 63%);
+      transform:rotate(-18deg);
+      pointer-events:none;
+    }
+    .page-num{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font:12px Arial,sans-serif;color:#8b7f6c}
+    .eyebrow{text-transform:uppercase;letter-spacing:.22em;font:600 12px Arial,sans-serif;color:#85775e;text-align:center}
+    h1,h2,h3{color:var(--ink);font-weight:400;margin:0}
+    h1{font-size:clamp(3.5rem,8vw,6.5rem);line-height:.94;letter-spacing:-.03em;text-align:center}
+    h2{font-size:clamp(2.7rem,6vw,4.6rem);line-height:1;text-align:center}
+    h3{font-size:1.55rem}
+    .script{font-family:'Brush Script MT','Segoe Script',cursive;font-weight:400;color:var(--ink);font-size:clamp(2.2rem,5vw,4rem);text-align:center;line-height:1.05}
+    .subtitle{text-align:center;color:#496277;font-size:1.13rem;font-style:italic;letter-spacing:.04em;max-width:700px;margin:12px auto 26px}
+    .ornament{text-align:center;color:var(--gold-deep);font-size:28px;margin:8px 0 16px}
+    .hero-image{width:100%;height:470px;object-fit:cover;border-radius:34px 10px 34px 10px;box-shadow:0 8px 24px rgba(31,51,61,.16);border:8px solid #f9f4e8}
+    .polaroid{position:absolute;right:56px;bottom:182px;width:245px;padding:11px;background:#fff;box-shadow:0 10px 24px rgba(35,35,35,.2);transform:rotate(3deg);border:1px solid #ddd}
+    .polaroid img{width:100%;display:block}
+    .badge-row{display:flex;justify-content:center;gap:34px;margin-top:34px;flex-wrap:wrap}
+    .round-badge{width:132px;height:132px;border-radius:50%;background:#fbf5e8;border:1px dashed var(--gold);box-shadow:0 7px 15px rgba(90,70,40,.1);display:grid;place-items:center;text-align:center;color:var(--ink);font-size:2.6rem}
+    .footer-quote{text-align:center;font-style:italic;color:#6c6559;margin-top:28px}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+    .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .section-title{display:flex;align-items:center;gap:12px;margin:16px 0 18px}
+    .num{width:42px;height:42px;border:1px solid var(--gold-deep);background:#dfcaa5;color:white;border-radius:50%;display:grid;place-items:center;font-size:1.35rem;flex:0 0 auto}
+    .rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent);flex:1}
+    .info-card{border:1px solid var(--line);background:rgba(255,252,245,.82);border-radius:18px;padding:18px 20px;box-shadow:0 4px 15px rgba(80,60,25,.05)}
+    .info-card h3{margin-bottom:10px}
+    .mini-list{display:grid;gap:10px}
+    .mini-item{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start}
+    .icon{font-size:1.45rem;color:var(--ink)}
+    .route-list{display:grid;gap:8px;font-size:.95rem}
+    .map-link{display:inline-flex;align-items:center;gap:6px;color:var(--ink);border-bottom:1px dotted rgba(23,75,114,.4)}
+    .map-link::before{content:"📍";font-size:.9em}
+    .timeline{margin:28px 0 0 34px;border-left:2px dotted #ccb58d;padding-left:30px;display:grid;gap:22px}
+    .timeline-item{position:relative}
+    .timeline-item::before{content:"";position:absolute;left:-37px;top:4px;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid #c4a675}
+    .time{font-size:1.28rem;color:var(--ink);font-weight:600}
+    .event-title{font-size:1.14rem;color:#42413d}
+    .fine{font-size:.9rem;color:#6f685d;font-style:italic}
+    .callout{border:1px solid var(--gold);border-radius:24px;padding:20px;background:linear-gradient(180deg,#fffdf8,#f6eedf);box-shadow:0 7px 16px rgba(85,70,45,.06)}
+    .choice-grid{display:grid;grid-template-columns:1fr 52px 1fr;gap:10px;align-items:stretch;margin-top:10px}
+    .choice{border:1px solid var(--gold);border-radius:16px;padding:14px;text-align:center;background:white}
+    .choice strong{display:inline-block;background:var(--ink);color:white;border-radius:10px;padding:4px 14px;margin-bottom:7px;font:600 .8rem Arial,sans-serif}
+    .or{align-self:center;justify-self:center;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#d7c3a0;color:white;font-weight:bold}
+    .memory{margin-top:30px;padding:18px 22px;border:1px dashed var(--gold);border-radius:18px;background:#fffaf0;text-align:center}
+    .memory h3{font-family:'Brush Script MT','Segoe Script',cursive;font-size:2rem}
+    .guide-row{display:grid;grid-template-columns:140px 1fr;gap:18px;padding:18px 0;border-bottom:1px dotted #c9b898}
+    .guide-row:last-child{border-bottom:0}
+    .guide-illustration{height:120px;border-radius:50%;background:linear-gradient(135deg,#f4ead8,#dbeaf1);display:grid;place-items:center;font-size:3.3rem;border:1px dashed var(--gold)}
+    .legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:18px auto 30px;padding:12px 18px;border:1px solid var(--line);border-radius:16px;width:max-content;max-width:100%;font:14px Arial,sans-serif}
+    .date-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+    .date-card{border:1px solid var(--gold);border-radius:24px;padding:22px;background:#fffdf7}
+    .date-card img{width:100%;height:210px;object-fit:cover;border-radius:16px;margin:10px 0 12px}
+    .date-card ul{padding-left:20px}
+    .check-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .check-section{border-right:1px dotted #c8b48e;padding-right:18px}
+    .check-section:nth-child(3n){border-right:0}
+    .check-section h3{font-size:1.7rem;margin-bottom:12px}
+    label.check{display:flex;gap:10px;align-items:flex-start;margin:10px 0;cursor:pointer}
+    input[type="checkbox"]{appearance:none;width:19px;height:19px;border:1px solid #8e8b83;background:white;margin-top:2px;display:grid;place-content:center;flex:0 0 auto}
+    input[type="checkbox"]::before{content:"✓";font:700 15px Arial,sans-serif;color:var(--ink);transform:scale(0);transition:.12s}
+    input[type="checkbox"]:checked::before{transform:scale(1)}
+    input[type="checkbox"]:checked+span{text-decoration:line-through;color:#8c877e}
+    .grocery-layout{display:grid;grid-template-columns:1.05fr 1fr;gap:26px}
+    .grocery-card{border:1px solid var(--gold);border-radius:20px;padding:15px;margin-bottom:14px;background:#fffdf8}
+    .quick-table{border:1px solid var(--gold);border-radius:20px;overflow:hidden}
+    .quick-row{display:grid;grid-template-columns:70px 1fr;gap:16px;padding:15px;border-bottom:1px dotted #c8b48e;align-items:center}
+    .quick-row:last-child{border-bottom:0}
+    .quick-icon{font-size:2.3rem;text-align:center}
+    .photo-strip{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:22px}
+    .photo-strip img{width:100%;height:260px;object-fit:cover;border-radius:20px;border:5px solid white;box-shadow:0 8px 20px rgba(30,40,45,.14)}
+    .sticky-tools{position:fixed;right:18px;bottom:18px;z-index:40;display:flex;flex-direction:column;gap:10px}
+    .tool-btn{border:0;border-radius:999px;background:var(--ink);color:white;padding:11px 14px;box-shadow:0 5px 18px rgba(23,75,114,.25);cursor:pointer;font:600 13px Arial,sans-serif}
+    .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:#163f5d;color:white;padding:10px 16px;border-radius:999px;font:13px Arial,sans-serif;transition:.2s;z-index:50}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    @media(max-width:780px){
+      .page{padding:38px 24px 46px;min-height:auto;outline-offset:-10px}
+      .two-col,.three-col,.date-grid,.grocery-layout,.check-grid{grid-template-columns:1fr}
+      .check-section{border-right:0;border-bottom:1px dotted #c8b48e;padding-bottom:18px;padding-right:0}
+      .choice-grid{grid-template-columns:1fr}.or{display:none}
+      .polaroid{position:relative;right:auto;bottom:auto;width:50%;margin:-60px 20px 18px auto}
+      .hero-image{height:390px}
+      .guide-row{grid-template-columns:90px 1fr}.guide-illustration{height:90px}
+      .photo-strip{grid-template-columns:1fr}.photo-strip img{height:220px}
+      .appbar{padding:10px 12px}.brand{display:none}
+    }
+    @media print{
+      body{background:white}.appbar,.sticky-tools,.toast{display:none}.page{box-shadow:none;margin:0 auto;page-break-after:always;width:100%;min-height:100vh;outline-offset:-12px}
+    }
+  </style>
+</head>
+<body>
+<header class="appbar">
+  <div class="brand">VENICE FAMILY PLANNER</div>
+  <nav aria-label="Page navigation">
+    <a href="#cover">Cover</a><a href="#overview">Overview</a><a href="#sat">Sat</a><a href="#sun">Sun</a><a href="#mon">Mon</a><a href="#tue">Tue</a><a href="#food">Food</a><a href="#dates">Date nights</a><a href="#packing">Packing</a><a href="#quick">Quick ref</a>
+  </nav>
+</header>
+
+<main>
+<section class="page" id="cover">
+  <h1>Venice, Florida</h1>
+  <div class="ornament">─ · 🐚 · ─</div>
+  <div class="script">Family Travel Planner</div>
+  <div class="eyebrow" style="font-size:15px;margin-top:18px">August 29 – September 1, 2026</div>
+  <p class="subtitle" style="font-style:normal;font-weight:600">Miami arrival&nbsp;&nbsp;•&nbsp;&nbsp;Venice stay&nbsp;&nbsp;•&nbsp;&nbsp;Beaches&nbsp;&nbsp;•&nbsp;&nbsp;Shark teeth&nbsp;&nbsp;•&nbsp;&nbsp;Pool time</p>
+  <img class="hero-image" src="assets/pool-patio.jpg" alt="Airbnb screened pool and patio" />
+  <div class="polaroid"><img src="assets/interior.jpg" alt="Bright coastal interior of the Airbnb" /></div>
+  <div class="badge-row"><div class="round-badge">🏝️</div><div class="round-badge">🏊</div><div class="round-badge">🏮</div></div>
+  <p class="footer-quote">Designed for a relaxed family getaway<br>with a 3-year-old and an almost-11-month-old.</p>
+  <div class="page-num">Page 1</div>
+</section>
+
+<section class="page" id="overview">
+  <h2>Trip Overview</h2>
+  <p class="subtitle">A calm, family-friendly Venice getaway built around beach mornings, baby nap breaks, pool time, and relaxed evenings.</p>
+  <div class="two-col">
+    <div>
+      <div class="section-title"><span class="num">1</span><h3>Flights</h3><span class="rule"></span></div>
+      <div class="mini-list">
+        <div class="mini-item"><div class="icon">✈️</div><div><strong>Outbound:</strong> Sat, Aug 29 • Southwest WN4591 •<br>St. Louis (STL) 10:10 AM → Miami (MIA) 1:55 PM</div></div>
+        <div class="mini-item"><div class="icon">↩️</div><div><strong>Return:</strong><br>Tue, Sept 1 • Miami (MIA) → St. Louis (STL) • 7:00 PM departure</div></div>
+        <p class="fine">Return flight time updated; older noon timing ignored.</p>
+      </div>
+    </div>
+    <div>
+      <div class="section-title"><span class="num">2</span><h3>Car + Home Base</h3><span class="rule"></span></div>
+      <div class="mini-list">
+        <div class="mini-item"><div class="icon">🚙</div><div>Rental car pickup and return at <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Miami%20International%20Airport">Miami International Airport</a></div></div>
+        <div class="mini-item"><div class="icon">🏠</div><div>Villa with private screened pool &amp; spa, approximately 6 minutes from Manasota Beach</div></div>
+        <div class="mini-item"><div class="icon">🕒</div><div>Tentative check-in around 4 PM; tentative checkout around 11 AM (confirm with host)</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section-title"><span class="num">3</span><h3>Trip Rhythm</h3><span class="rule"></span></div>
+  <div class="three-col" style="grid-template-columns:repeat(4,1fr)">
+    <div class="info-card" style="text-align:center"><div style="font-size:2.8rem">🌴</div><strong>Morning outings</strong></div>
+    <div class="info-card" style="text-align:center"><div style="font-size:2.8rem">🛏️</div><strong>Midday baby nap at the villa</strong></div>
+    <div class="info-card" style="text-align:center"><div style="font-size:2.8rem">🏖️</div><strong>Late-afternoon beach or pool time</strong></div>
+    <div class="info-card" style="text-align:center"><div style="font-size:2.8rem">🌙</div><strong>Relaxed evenings + two at-home date nights</strong></div>
+  </div>
+  <p class="footer-quote">👶 3-year-old does not nap; baby will be almost 11 months old and does need a nap.</p>
+  <div class="two-col" style="margin-top:22px">
+    <div>
+      <div class="section-title"><span class="num">4</span><h3>Google Maps-Friendly Key Stops</h3><span class="rule"></span></div>
+      <div class="route-list">
+        <div><strong>Airport</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Miami%20International%20Airport">Miami International Airport</a></div>
+        <div><strong>Grocery</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Publix%20Airpark%20Plaza%205715%20NW%207th%20St%20Miami%20FL%2033126">Publix Airpark Plaza • 5715 NW 7th St, Miami, FL 33126</a></div>
+        <div><strong>Dining</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Shahs%20of%20Kabob%20Coral%20Gables%202624%20Ponce%20de%20Leon%20Blvd%20Coral%20Gables%20FL%2033134">Shahs of Kabob Coral Gables • 2624 Ponce de Leon Blvd, Coral Gables, FL 33134</a></div>
+        <div><strong>Beach</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Manasota%20Beach%208570%20Manasota%20Key%20Rd%20Englewood%20FL%2034223">Manasota Beach • 8570 Manasota Key Rd, Englewood, FL 34223</a></div>
+        <div><strong>Beach</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Venice%20Beach%20101%20The%20Esplanade%20Venice%20FL%2034285">Venice Beach • 101 The Esplanade, Venice, FL 34285</a></div>
+        <div><strong>Beach</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Caspersen%20Beach%204100%20Harbor%20Dr%20S%20Venice%20FL%2034285">Caspersen Beach • 4100 Harbor Dr S, Venice, FL 34285</a></div>
+        <div><strong>Café</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Croissant%20%26%20Co%20501%20S%20Tamiami%20Trl%20Venice%20FL%2034285">Croissant &amp; Co • 501 S Tamiami Trl, Venice, FL 34285</a></div>
+        <div><strong>Treat</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Ciao%20Gelato%20317A%20W%20Venice%20Ave%20Venice%20FL%2034285">Ciao Gelato • 317A W Venice Ave, Venice, FL 34285</a></div>
+        <div><strong>Treat</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Venice%20Avenue%20Creamery%20249%20W%20Venice%20Ave%20Venice%20FL%2034285">Venice Avenue Creamery • 249 W Venice Ave, Venice, FL 34285</a></div>
+        <div><strong>Grocery</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Publix%20Venice%20Shopping%20Center%20535%20Tamiami%20Trl%20S%20Venice%20FL%2034285">Publix Venice Shopping Center • 535 Tamiami Trl S, Venice, FL 34285</a></div>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="section-title"><span class="num">5</span><h3>Good to Know</h3><span class="rule"></span></div>
+      <p>🍽️ Halal/zabiha meat prioritized; seafood and vegetarian meals are also included as local options.</p>
+      <p>☀️ Beaches in this planner generally operate 6 AM–10 PM; parking is typically free at main Sarasota County beach parks.</p>
+      <p>🌙 Sunday and Monday date nights happen at the villa after the kids are asleep.</p>
+    </div>
+  </div>
+  <div class="page-num">Page 2</div>
+</section>
+
+<section class="page" id="sat">
+  <h2>Saturday • August 29</h2>
+  <p class="subtitle">Arrival Day: Miami lunch, grocery stop, then an easy drive to Venice.</p>
+  <div class="two-col" style="grid-template-columns:1.6fr .8fr">
+    <div class="timeline">
+      <div class="timeline-item"><div class="time">10:10 AM</div><div class="event-title">Depart St. Louis (STL)</div></div>
+      <div class="timeline-item"><div class="time">1:55 PM</div><div class="event-title">Arrive in Miami (MIA)</div></div>
+      <div class="timeline-item"><div class="time">2:15–3:00 PM</div><div class="event-title">Pick up the rental car and get settled</div></div>
+      <div class="timeline-item"><div class="time">3:15–4:15 PM</div><div class="event-title">Late halal lunch in Miami</div><div class="info-card" style="margin-top:10px"><strong>Best primary choice:</strong> Shahs of Kabob Coral Gables<br><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Shahs%20of%20Kabob%20Coral%20Gables%202624%20Ponce%20de%20Leon%20Blvd%20Coral%20Gables%20FL%2033134">2624 Ponce de Leon Blvd, Coral Gables, FL 33134</a><br><span class="fine">Official site notes a 100% halal menu.</span><br><strong>Backup:</strong> Shahs of Kabob South Miami.</div></div>
+      <div class="timeline-item"><div class="time">4:30–5:00 PM</div><div class="event-title">Grocery stop</div><div class="info-card" style="margin-top:10px"><strong>Suggested stop:</strong> <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Publix%20Airpark%20Plaza%205715%20NW%207th%20St%20Miami%20FL%2033126">Publix Airpark Plaza • 5715 NW 7th St, Miami, FL 33126</a></div></div>
+      <div class="timeline-item"><div class="time">5:00–8:45 PM</div><div class="event-title">Drive toward Venice</div><div class="fine">Plan one light stretch / diaper / snack break if needed.</div></div>
+      <div class="timeline-item"><div class="time">Around 9:00 PM</div><div class="event-title">Check in at the villa (tentative)</div></div>
+      <div class="timeline-item"><div class="time">9:15 PM onward</div><div class="event-title">Unpack essentials, quick reset, baby bedtime, and a relaxed night in</div></div>
+    </div>
+    <div class="callout" style="align-self:center"><h3 style="text-align:center;font-size:2rem">Tonight’s<br>Simple Plan</h3><p>💛 Keep dinner minimal since you’ll already have had a late lunch.</p><p>🧳 Unpack only the essentials: pajamas, diapers, snacks, swimsuits, chargers.</p><p>🌴 If everyone still has energy, do a very quick look at the screened pool patio — but no pressure to do anything else.</p></div>
+  </div>
+  <div class="memory"><h3>Today’s Memory</h3><div>📷 Arrival photo at the villa or a first family snapshot by the pool.</div></div>
+  <div class="page-num">Page 3</div>
+</section>
+
+<section class="page" id="sun">
+  <h2>Sunday • August 30</h2>
+  <p class="subtitle">Downtown Venice, a flexible beach afternoon, and Date Night #1 at the villa.</p>
+  <div class="two-col" style="grid-template-columns:1.45fr .7fr">
+    <div class="timeline">
+      <div class="timeline-item"><div class="time">9:00 AM • Breakfast</div><div><strong>Primary pick:</strong> <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Croissant%20%26%20Co%20501%20S%20Tamiami%20Trl%20Venice%20FL%2034285">Croissant &amp; Co • 501 S Tamiami Trl, Venice</a> • Open daily 8 AM–3 PM</div></div>
+      <div class="timeline-item"><div class="time">10:00–11:30 AM</div><div class="event-title">Stroll Downtown Venice + Centennial Park</div><div class="fine">A relaxed walk, shady green space, and an easy family outing before the heat peaks.</div></div>
+      <div class="timeline-item"><div class="time">12:00–1:00 PM • Lunch</div><div>Keep lunch easy and family-friendly near downtown; use the Food Guide for options.</div></div>
+      <div class="timeline-item"><div class="time">1:30–3:30 PM</div><div class="event-title">Baby nap at the villa + 3-year-old pool / quiet play time</div></div>
+      <div class="timeline-item"><div class="time">4:30–6:45 PM • Beach time</div><div class="choice-grid"><div class="choice"><strong>Choice A</strong><br><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Venice%20Beach%20101%20The%20Esplanade%20Venice%20FL%2034285">Venice Beach</a><br><span class="fine">best if you want classic Venice vibes after downtown</span></div><div class="or">OR</div><div class="choice"><strong>Choice B</strong><br><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Manasota%20Beach%208570%20Manasota%20Key%20Rd%20Englewood%20FL%2034223">Manasota Beach</a><br><span class="fine">best if you want the shortest drive and a quieter feel</span></div></div></div>
+      <div class="timeline-item"><div class="time">6:45–7:15 PM</div><div class="event-title">Sunset pause</div></div>
+      <div class="timeline-item"><div class="time">7:30 PM</div><div class="event-title">Dessert stop on the way back or before heading in</div><div><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Ciao%20Gelato%20317A%20W%20Venice%20Ave%20Venice%20FL%2034285">Ciao Gelato</a> or <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Venice%20Avenue%20Creamery%20249%20W%20Venice%20Ave%20Venice%20FL%2034285">Venice Avenue Creamery</a></div></div>
+      <div class="timeline-item"><div class="time">After bedtime</div><div class="event-title">Date Night #1 at the villa</div><div class="fine">A slightly dressed-up patio dinner under the lights, after the kids are asleep.</div></div>
+    </div>
+    <div>
+      <div class="callout"><h3>Why this day works</h3><p>☀️ One main outing in the morning</p><p>🛏️ A protected nap break in the afternoon</p><p>🌴 A flexible beach choice based on everyone’s energy</p></div>
+      <img src="assets/pool.jpg" alt="Airbnb pool" style="width:100%;margin-top:28px;border-radius:16px;transform:rotate(3deg);border:8px solid white;box-shadow:0 8px 18px rgba(0,0,0,.15)">
+      <div class="memory"><h3>Today’s Memory</h3><div>A sunset family photo or an ice-cream moment downtown.</div></div>
+    </div>
+  </div>
+  <div class="page-num">Page 4</div>
+</section>
+
+<section class="page" id="mon">
+  <h2>Monday • August 31</h2>
+  <p class="subtitle">Shark-tooth morning, a restful nap break, and Date Night #2 at the villa.</p>
+  <div class="two-col" style="grid-template-columns:1.45fr .7fr">
+    <div class="timeline">
+      <div class="timeline-item"><div class="time">9:00 AM</div><div class="event-title">Easy breakfast at the villa</div><div class="fine">A slower start works well before the beach morning.</div></div>
+      <div class="timeline-item"><div class="time">10:00 AM–12:00 PM</div><div class="event-title">Caspersen Beach shark-tooth hunt</div><div><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Caspersen%20Beach%204100%20Harbor%20Dr%20S%20Venice%20FL%2034285">Caspersen Beach • 4100 Harbor Dr S, Venice</a></div><div class="fine">A classic local pick for searching for shark teeth.</div></div>
+      <div class="timeline-item"><div class="time">12:15–1:00 PM • Lunch</div><div>Keep it simple and casual; use the Food Guide for options or pack easy beach snacks.</div></div>
+      <div class="timeline-item"><div class="time">1:30–3:30 PM</div><div class="event-title">Baby nap + villa pool break</div></div>
+      <div class="timeline-item"><div class="time">4:00–6:00 PM • Flexible afternoon</div><div class="info-card"><p><strong>Option 1:</strong> Stay local: Manasota Beach or more pool time.</p><p><strong>Option 2:</strong> If everyone has extra energy or weather changes, use <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Mote%20SEA%20225%20University%20Town%20Center%20Dr%20Sarasota%20FL%2034243">Mote SEA • 225 University Town Center Dr, Sarasota</a> as the main backup family outing.</p></div></div>
+      <div class="timeline-item"><div class="time">6:30–7:30 PM</div><div class="event-title">Dinner</div></div>
+      <div class="timeline-item"><div class="time">After bedtime</div><div class="event-title">Date Night #2 at the villa</div><div class="fine">A calmer, cozier poolside evening with dessert and an optional quick spa or pool dip.</div></div>
+    </div>
+    <div class="callout"><h3 style="font-family:'Brush Script MT','Segoe Script',cursive;font-size:2.4rem">Best local pace</h3><p>☀️ Keep the morning as the main activity</p><p>🌙 Protect the nap window</p><p>🌴 Let the late afternoon stay flexible</p></div>
+  </div>
+  <div class="memory"><h3>Today’s Memory</h3><div>Find your first shark tooth or let your 3-year-old choose the favorite beach shell of the day.</div></div>
+  <div class="page-num">Page 5</div>
+</section>
+
+<section class="page" id="tue">
+  <h2>Tuesday • September 1</h2>
+  <p class="subtitle">An easy last morning, one more swim, then the drive back to Miami.</p>
+  <div class="two-col" style="grid-template-columns:1.45fr .7fr">
+    <div class="timeline">
+      <div class="timeline-item"><div class="time">9:00 AM</div><div class="event-title">Easy breakfast at the villa</div></div>
+      <div class="timeline-item"><div class="time">9:30–10:30 AM</div><div class="event-title">Family pool time + a few photos</div><div class="fine">This is the best moment for a relaxed final swim and simple family or couple pictures.</div></div>
+      <div class="timeline-item"><div class="time">10:30–11:00 AM</div><div class="event-title">Dry off, pack, and reset the house</div></div>
+      <div class="timeline-item"><div class="time">Around 11:00 AM</div><div class="event-title">Check out (tentative)</div><div class="fine">Confirm exact checkout timing with the host.</div></div>
+      <div class="timeline-item"><div class="time">11:15 AM–3:30 PM</div><div class="event-title">Drive toward Miami</div><div class="fine">Plan one light stop for the baby, diaper changes, and car snacks.</div></div>
+      <div class="timeline-item"><div class="time">Around 4:00 PM</div><div class="event-title">Halal early dinner / late lunch in Miami</div><div>Primary pick: <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Shahs%20of%20Kabob%20Coral%20Gables%202624%20Ponce%20de%20Leon%20Blvd%20Coral%20Gables%20FL%2033134">Shahs of Kabob Coral Gables</a>.</div></div>
+      <div class="timeline-item"><div class="time">5:15 PM</div><div class="event-title">Fuel up, return the rental car, and head into MIA</div></div>
+      <div class="timeline-item"><div class="time">5:45–6:00 PM</div><div class="event-title">Aim to be inside the airport</div></div>
+      <div class="timeline-item"><div class="time">7:00 PM</div><div class="event-title">Depart Miami (MIA)</div></div>
+    </div>
+    <div>
+      <div class="callout"><h3>Departure-day tips</h3><p>⭐ Keep swimsuits and towels easy to access for the morning.</p><p>⭐ Use the groceries page for ideal car snacks.</p><p>⭐ Leave Venice with a time buffer rather than a tight schedule.</p><p>⭐ If everyone gets hungry earlier, use the snacks in the car and keep Miami as the main meal stop.</p></div>
+      <img src="assets/pool-patio.jpg" alt="Pool patio" style="width:100%;margin-top:28px;border-radius:16px;transform:rotate(-3deg);border:8px solid white;box-shadow:0 8px 18px rgba(0,0,0,.15)">
+    </div>
+  </div>
+  <div class="memory"><h3>Today’s Memory</h3><div>One last pool photo and a quick recap of everyone’s favorite part of the trip.</div></div>
+  <div class="page-num">Page 6</div>
+</section>
+
+<section class="page" id="food">
+  <h2>Food + Dessert Guide</h2>
+  <p class="subtitle">Zabiha first, with seafood and vegetarian local options that fit the trip.</p>
+  <div class="legend"><span>🟢 Halal / zabiha</span><span>🐟 Seafood</span><span>🥗 Vegetarian-friendly</span><span>👨‍👩‍👧 Kid-friendly</span><span>$$ = moderate</span></div>
+  <div class="guide-row"><div class="guide-illustration">🏝️</div><div><div class="section-title"><span class="num">1</span><h3>Arrival Lunch in Miami</h3><span class="rule"></span></div><p>🟢 <strong>Shahs of Kabob Coral Gables</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Shahs%20of%20Kabob%20Coral%20Gables%202624%20Ponce%20de%20Leon%20Blvd%20Coral%20Gables%20FL%2033134">2624 Ponce de Leon Blvd, Coral Gables</a> • 11 AM–10 PM • 100% halal menu on official site • 👨‍👩‍👧 $$</p><p>🟢 <strong>Shahs of Kabob South Miami</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Shahs%20of%20Kabob%20South%20Miami%205975%20Sunset%20Dr%20%23109%20South%20Miami%20FL%2033143">5975 Sunset Dr #109, South Miami</a> • 11 AM–10 PM • 100% halal menu on official site • 👨‍👩‍👧 $$</p><p class="fine">Best fit for this trip if you want dependable halal meat before driving west.</p></div></div>
+  <div class="guide-row"><div class="guide-illustration">☕</div><div><div class="section-title"><span class="num">2</span><h3>Venice Breakfast</h3><span class="rule"></span></div><p>🟢 <strong>Croissant &amp; Co</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Croissant%20%26%20Co%20501%20S%20Tamiami%20Trl%20Venice%20FL%2034285">501 S Tamiami Trl, Venice</a> • Open daily 8 AM–3 PM • pastry / bakery café • 👨‍👩‍👧 $$</p></div></div>
+  <div class="guide-row"><div class="guide-illustration">🍨</div><div><div class="section-title"><span class="num">3</span><h3>Dessert Stops</h3><span class="rule"></span></div><p>🟢 <strong>Ciao Gelato</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Ciao%20Gelato%20317A%20W%20Venice%20Ave%20Venice%20FL%2034285">317A W Venice Ave, Venice</a> • roughly 10 AM–9 PM most days (later Fri–Sat) • 👨‍👩‍👧 $$</p><p>🟢 <strong>Venice Avenue Creamery</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Venice%20Avenue%20Creamery%20249%20W%20Venice%20Ave%20Venice%20FL%2034285">249 W Venice Ave, Venice</a> • typically open into the evening • 👨‍👩‍👧 $</p></div></div>
+  <div class="guide-row"><div class="guide-illustration">🌅</div><div><div class="section-title"><span class="num">4</span><h3>Local Dinner Options in Venice</h3><span class="rule"></span></div><p>🐟 <strong>Dockside Waterfront Grill</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Dockside%20Waterfront%20Grill%20509%20N%20Tamiami%20Trl%20Venice%20FL%2034285">509 N Tamiami Trl, Venice</a> • seafood / waterfront • 11 AM–9 PM • 👨‍👩‍👧 $$</p><p>🐟 <strong>Sharky’s On The Pier</strong> • <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sharkys%20On%20The%20Pier%201600%20Harbor%20Dr%20S%20Venice%20FL%2034285">1600 Harbor Dr S, Venice</a> • seafood / beachfront • Sun–Thu 11:30 AM–10 PM, Fri–Sat to 11 PM • 👨‍👩‍👧 $$</p><p class="fine">These are excellent local seafood choices.</p></div></div>
+  <div class="guide-row"><div class="guide-illustration">🏮</div><div><div class="section-title"><span class="num">5</span><h3>Practical Halal Note</h3><span class="rule"></span></div><div class="callout">For this Venice-focused trip, the strongest zabiha picks are in the Miami area. Once in Venice, seafood and vegetarian meals are the easiest local fallbacks unless you independently confirm halal meat with a specific restaurant.</div></div></div>
+  <p class="footer-quote">Tip: grab dessert before heading back to the villa on your beach evenings.</p>
+  <div class="page-num">Page 7</div>
+</section>
+
+<section class="page" id="dates">
+  <div class="eyebrow">Page 8</div>
+  <h2>Two At-Home Date Nights</h2>
+  <p class="subtitle">Both evenings happen at the villa after the kids are asleep — no leaving the property.</p>
+  <div class="date-grid">
+    <div class="date-card"><div class="section-title"><span class="num">1</span><div><h3>Sunday • Date Night #1</h3><div class="script" style="font-size:2rem;text-align:left">Patio dinner under the lights</div></div></div><img src="assets/pool-patio.jpg" alt="Airbnb patio and pool"><ul><li>Dress up a little and set the patio table after bedtime.</li><li>Pick up dinner and dessert ahead of time so the night stays easy.</li><li>Best feel: slightly more polished, slow dinner, then dessert by the pool.</li><li>Optional finish: a quiet spa moment or just sit outside together.</li></ul><h3>🧺 Pick up beforehand</h3><p>🍝 Dinner<br>🍰 Dessert<br>🥤 Sparkling water or mocktail ingredients<br>🌼 A simple floral stem or battery tea lights (optional)</p></div>
+    <div class="date-card"><div class="section-title"><span class="num">2</span><div><h3>Monday • Date Night #2</h3><div class="script" style="font-size:2rem;text-align:left">Cozy poolside wind-down</div></div></div><img src="assets/pool.jpg" alt="Airbnb pool and spa"><ul><li>Keep this one more relaxed and effortless.</li><li>Use takeout, a favorite dessert, and a quiet poolside setup.</li><li>Optional finish: a quick pool or spa dip if it feels easy.</li><li>A nice closing ritual: look through the best photos from the trip.</li></ul><h3>🧺 Pick up beforehand</h3><p>🥡 Takeout or easy prepared food<br>🍓 Dessert<br>🧺 Dry towels<br>🔌 Phone charger / small speaker / baby monitor setup</p></div>
+  </div>
+  <div class="callout" style="max-width:600px;margin:26px auto 0"><h3 style="text-align:center">Date-night rules for this trip</h3><p>🏠 Stay at the villa while the kids are sleeping.</p><p>🚫 Do not assume the Airbnb provides decorations or hosting extras.</p><p>🤍 Simple &gt; elaborate. The point is ease, not effort.</p></div>
+  <p class="footer-quote">These evenings are meant to feel calm, grown-up, and low-stress.</p>
+  <div class="page-num">Page 8</div>
+</section>
+
+<section class="page" id="packing">
+  <div class="eyebrow">9</div><h2>Packing Checklist</h2><p class="subtitle">Keep it light, practical, and easy to manage with little kids.</p>
+  <div class="check-grid" data-check-group="packing">
+    <div class="check-section"><h3>① Main luggage 🧳</h3><label class="check"><input type="checkbox"><span>light outfits</span></label><label class="check"><input type="checkbox"><span>pajamas</span></label><label class="check"><input type="checkbox"><span>underwear / socks</span></label><label class="check"><input type="checkbox"><span>modest beach cover-ups</span></label><label class="check"><input type="checkbox"><span>sandals + comfortable walking shoes</span></label><label class="check"><input type="checkbox"><span>lightweight sweater for indoor A/C</span></label><label class="check"><input type="checkbox"><span>toiletries</span></label><label class="check"><input type="checkbox"><span>medications</span></label><label class="check"><input type="checkbox"><span>phone chargers</span></label></div>
+    <div class="check-section"><h3>② Beach bag 👜</h3><label class="check"><input type="checkbox"><span>swimsuits</span></label><label class="check"><input type="checkbox"><span>rash guards / sun hats</span></label><label class="check"><input type="checkbox"><span>sunscreen</span></label><label class="check"><input type="checkbox"><span>beach towels</span></label><label class="check"><input type="checkbox"><span>water bottles</span></label><label class="check"><input type="checkbox"><span>snacks</span></label><label class="check"><input type="checkbox"><span>wet bag</span></label><label class="check"><input type="checkbox"><span>sand toys</span></label><label class="check"><input type="checkbox"><span>change of clothes for kids</span></label></div>
+    <div class="check-section"><h3>③ Baby bag 🧸</h3><label class="check"><input type="checkbox"><span>diapers</span></label><label class="check"><input type="checkbox"><span>wipes</span></label><label class="check"><input type="checkbox"><span>swim diapers</span></label><label class="check"><input type="checkbox"><span>bottles / formula / milk plan</span></label><label class="check"><input type="checkbox"><span>baby food / pouches</span></label><label class="check"><input type="checkbox"><span>bibs</span></label><label class="check"><input type="checkbox"><span>extra outfit</span></label><label class="check"><input type="checkbox"><span>sleep essentials</span></label><label class="check"><input type="checkbox"><span>stroller / carrier</span></label></div>
+    <div class="check-section"><h3>④ Car bag 🚙</h3><label class="check"><input type="checkbox"><span>tissues</span></label><label class="check"><input type="checkbox"><span>backup snacks</span></label><label class="check"><input type="checkbox"><span>trash bags</span></label><label class="check"><input type="checkbox"><span>hand sanitizer</span></label><label class="check"><input type="checkbox"><span>baby changing pad</span></label><label class="check"><input type="checkbox"><span>extra wipes</span></label><label class="check"><input type="checkbox"><span>tablet / quiet toys / books</span></label></div>
+    <div class="check-section"><h3>⑤ Date-night mini list 🏮</h3><label class="check"><input type="checkbox"><span>one nicer outfit each</span></label><label class="check"><input type="checkbox"><span>simple jewelry / watch</span></label><label class="check"><input type="checkbox"><span>battery tea lights (optional)</span></label><label class="check"><input type="checkbox"><span>a small speaker or playlist</span></label><label class="check"><input type="checkbox"><span>dessert spoons / napkins if needed</span></label></div>
+    <div class="check-section"><h3>⑥ Don’t forget</h3><label class="check"><input type="checkbox"><span>flight IDs / reservation access on phone</span></label><label class="check"><input type="checkbox"><span>baby monitor</span></label><label class="check"><input type="checkbox"><span>chargers for all devices</span></label><label class="check"><input type="checkbox"><span>any pool-safe floaties or puddle jumpers</span></label><label class="check"><input type="checkbox"><span>a small first-aid pouch</span></label></div>
+  </div>
+  <p class="footer-quote">A well-packed beach bag makes the whole day smoother.</p>
+  <div class="page-num">Page 9</div>
+</section>
+
+<section class="page" id="quick">
+  <h2>Groceries + Quick Reference</h2><p class="subtitle">The practical page you can glance at while traveling.</p>
+  <div class="grocery-layout">
+    <div data-check-group="groceries">
+      <h3 style="font-size:2rem;margin-bottom:14px">🛒 Arrival Grocery List</h3>
+      <div class="grocery-card"><h3>🧺 First-night essentials</h3><label class="check"><input type="checkbox"><span>water</span></label><label class="check"><input type="checkbox"><span>milk</span></label><label class="check"><input type="checkbox"><span>fruit</span></label><label class="check"><input type="checkbox"><span>breakfast basics</span></label><label class="check"><input type="checkbox"><span>easy dinner backups</span></label><label class="check"><input type="checkbox"><span>coffee / tea</span></label></div>
+      <div class="grocery-card"><h3>🧸 Kid essentials</h3><label class="check"><input type="checkbox"><span>diapers</span></label><label class="check"><input type="checkbox"><span>wipes</span></label><label class="check"><input type="checkbox"><span>pouches</span></label><label class="check"><input type="checkbox"><span>yogurt</span></label><label class="check"><input type="checkbox"><span>crackers</span></label><label class="check"><input type="checkbox"><span>baby snacks</span></label></div>
+      <div class="grocery-card"><h3>☀️ Beach / pool supplies</h3><label class="check"><input type="checkbox"><span>sunscreen</span></label><label class="check"><input type="checkbox"><span>bottled water</span></label><label class="check"><input type="checkbox"><span>extra snacks</span></label><label class="check"><input type="checkbox"><span>paper towels</span></label><label class="check"><input type="checkbox"><span>swim diapers</span></label></div>
+      <div class="grocery-card"><h3>♡ Date-night add-ons</h3><label class="check"><input type="checkbox"><span>sparkling water</span></label><label class="check"><input type="checkbox"><span>dessert</span></label><label class="check"><input type="checkbox"><span>simple flowers</span></label><label class="check"><input type="checkbox"><span>tea lights</span></label><label class="check"><input type="checkbox"><span>mocktail ingredients</span></label></div>
+      <div class="info-card"><strong>Best arrival stop</strong><br><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Publix%20Airpark%20Plaza%205715%20NW%207th%20St%20Miami%20FL%2033126">Publix Airpark Plaza • 5715 NW 7th St, Miami, FL 33126</a></div>
+      <div class="info-card" style="margin-top:10px"><strong>Useful Venice refill stop</strong><br><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Publix%20Venice%20Shopping%20Center%20535%20Tamiami%20Trl%20S%20Venice%20FL%2034285">Publix Venice Shopping Center • 535 Tamiami Trl S, Venice, FL 34285</a></div>
+    </div>
+    <div>
+      <h3 style="font-size:2rem;margin-bottom:14px">🧭 Quick Reference</h3>
+      <div class="quick-table">
+        <div class="quick-row"><div class="quick-icon">🌴</div><div><strong>Closest easy beach:</strong><br><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Manasota%20Beach%208570%20Manasota%20Key%20Rd%20Englewood%20FL%2034223">Manasota Beach</a></div></div>
+        <div class="quick-row"><div class="quick-icon">🍦</div><div><strong>Best downtown + dessert combo:</strong><br>Downtown Venice + Venice Beach + Ciao Gelato / Venice Avenue Creamery</div></div>
+        <div class="quick-row"><div class="quick-icon">🦈</div><div><strong>Best shark-tooth stop:</strong><br><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Caspersen%20Beach%204100%20Harbor%20Dr%20S%20Venice%20FL%2034285">Caspersen Beach</a></div></div>
+        <div class="quick-row"><div class="quick-icon">🐟</div><div><strong>Morning backup / weather-change option:</strong><br><a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Mote%20SEA%20225%20University%20Town%20Center%20Dr%20Sarasota%20FL%2034243">Mote SEA, Sarasota</a></div></div>
+        <div class="quick-row"><div class="quick-icon">☀️</div><div><strong>Beach hours used in this planner:</strong><br>generally 6 AM–10 PM</div></div>
+        <div class="quick-row"><div class="quick-icon">🚙</div><div><strong>Parking:</strong><br>usually free at main Sarasota County beach parks</div></div>
+        <div class="quick-row"><div class="quick-icon">🛏️</div><div><strong>Baby nap anchor:</strong><br>mid-afternoon at the villa</div></div>
+        <div class="quick-row"><div class="quick-icon">🌙</div><div><strong>Date nights:</strong><br>Sunday + Monday, both at the villa</div></div>
+        <div class="quick-row"><div class="quick-icon">🧳</div><div><strong>Departure plan:</strong><br>leave Venice with a real time buffer for Miami</div></div>
+      </div>
+      <div class="photo-strip"><img src="assets/interior.jpg" alt="Airbnb interior"><img src="assets/pool.jpg" alt="Airbnb pool"></div>
+    </div>
+  </div>
+  <div class="callout" style="max-width:600px;margin:26px auto 0;text-align:center"><h3>Trip mindset</h3><p>This planner is meant to help you feel guided, not rushed.<br>Keep the big anchors, stay flexible with the small details,<br>and protect the afternoon reset.</p></div>
+  <p class="footer-quote">Easy pace, happy kids, better memories.</p>
+  <div class="page-num">Page 10</div>
+</section>
+</main>
+
+<div class="sticky-tools"><button class="tool-btn" id="printBtn">Print / Save PDF</button><button class="tool-btn" id="clearBtn">Reset checklists</button></div>
+<div class="toast" id="toast">Saved</div>
+<script>
+  const toast=document.getElementById('toast');
+  function showToast(msg){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1200)}
+  const checks=[...document.querySelectorAll('input[type="checkbox"]')];
+  checks.forEach((c,i)=>{
+    const key='venicePlannerCheck_'+i;
+    c.checked=localStorage.getItem(key)==='1';
+    c.addEventListener('change',()=>{localStorage.setItem(key,c.checked?'1':'0');showToast('Checklist saved')});
+  });
+  document.getElementById('clearBtn').addEventListener('click',()=>{
+    if(confirm('Reset all packing and grocery checkboxes?')){checks.forEach((c,i)=>{c.checked=false;localStorage.removeItem('venicePlannerCheck_'+i)});showToast('Checklists reset')}
+  });
+  document.getElementById('printBtn').addEventListener('click',()=>window.print());
+</script>
+</body>
+</html>
